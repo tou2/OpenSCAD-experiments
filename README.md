@@ -25,6 +25,19 @@ This repository contains OpenSCAD experiments. Current generators:
 - `margin`, `corner_radius`: Plate padding and rounded corners.
 - `plate_thickness`, `text_depth`, `text_mode`: Base thickness, emboss/engrave depth, and mode.
 - `halign`, `valign`: Text alignment within the plate.
+ - `language`, `script`, `direction`: International text shaping. For Arabic, use `language = "ar"`, `script = "arabic"`, `direction = "rtl"`, and pick a font that supports Arabic (e.g., `"Noto Naskh Arabic"`, `"Amiri"`, `"Scheherazade"`).
+
+Example (Arabic):
+
+```
+message = "مرحبا";
+font = "Noto Naskh Arabic";
+language = "ar";
+script = "arabic";
+direction = "rtl";
+halign = "center"; // or "right" for right-aligned text
+text_mode = "emboss";
+```
 
 ## Bag key parameters (`bag.scad`)
 - `bag_width`, `bag_height`, `bag_depth`: Overall body dimensions.

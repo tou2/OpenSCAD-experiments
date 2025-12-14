@@ -23,6 +23,12 @@ halign = "center";        // text alignment: left|center|right
 valign = "center";        // text vertical alignment: top|center|baseline|bottom
 $fn = 64;
 
+// International text layout (set these for Arabic or other scripts)
+// For Arabic examples: font="Noto Naskh Arabic" (or "Amiri"), language="ar", script="arabic", direction="rtl"
+language = "en";          // e.g., "ar" for Arabic
+script = "latin";         // e.g., "arabic"
+direction = "ltr";        // "ltr" (left-to-right), "rtl" (right-to-left), or "ttb"
+
 /****************************
  * Helpers
  ****************************/
@@ -42,9 +48,17 @@ module plate(w, h, t, r) {
     linear_extrude(height=t) rounded_rect_2d(w, h, r);
 }
 
-module text3d(msg, size, depth, font, halign, valign, spacing=1.0) {
+module text3d(msg, size, depth, font, halign, valign, spacing=1.0, language="en", script="latin", direction="ltr") {
     linear_extrude(height=depth)
-        text(msg, size=size, font=font, halign=halign, valign=valign, spacing=spacing);
+        text(msg,
+             size=size,
+             font=font,
+             halign=halign,
+             valign=valign,
+             spacing=spacing,
+             language=language,
+             script=script,
+             direction=direction);
 }
 
 /****************************
@@ -59,14 +73,14 @@ module text_plate() {
             plate(w, h, plate_thickness, corner_radius);
             // place text on the top surface
             translate([0, 0, plate_thickness])
-                text3d(message, size, text_depth, font, halign, valign, letter_spacing);
+                text3d(message, size, text_depth, font, halign, valign, letter_spacing, language, script, direction);
         }
     } else if (text_mode == "engrave") {
         difference() {
             plate(w, h, plate_thickness, corner_radius);
             // subtract text into the top face
             translate([0, 0, plate_thickness - text_depth])
-                text3d(message, size, text_depth, font, halign, valign, letter_spacing);
+                text3d(message, size, text_depth, font, halign, valign, letter_spacing, language, script, direction);
         }
     } else {
         plate(w, h, plate_thickness, corner_radius);
