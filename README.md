@@ -5,9 +5,16 @@ This repository contains OpenSCAD experiments. Current generators:
 - `bag.scad` — soft-sided bag with tunable dimensions and pockets.
 - `cat.scad` — stylized parametric cat with adjustable body, head, tail, ears, and legs.
 - `shackle.scad` — D/bow shackle with adjustable bow thickness, gap, and pin.
+ - `cube.scad` — simple parametric cube with optional chamfer or fillet.
+ - `sphere.scad` — sphere with radius and optional centering.
+ - `cylinder.scad` — cylinder with radius/height and centering.
+ - `cone.scad` — cone/frustum with `r1`, `r2`, height.
+ - `torus.scad` — torus via rotate_extrude with major/minor radii.
+ - `pyramid.scad` — square-base pyramid with base size and height.
+ - `prism.scad` — right triangular prism with base and height.
 
 ## Quick start
-1. Open `bag.scad`, `cat.scad`, or `shackle.scad` in OpenSCAD.
+1. Open any `.scad` in OpenSCAD (e.g., `cube.scad`, `sphere.scad`, `cylinder.scad`, `cone.scad`, `torus.scad`, `pyramid.scad`, `prism.scad`).
 2. Tweak the variables in the **User parameters** section.
 3. Press F5 to preview, F6 to render.
 
@@ -30,6 +37,12 @@ This repository contains OpenSCAD experiments. Current generators:
 - `throat_width`, `leg_height`: Gap between legs and height to pin centerline.
 - `pin_diameter`, `pin_clearance`: Pin size and fit allowance.
 - `pin_head_*`, `pin_nut_*`, `pin_eye_diameter`: Head, nut, and through-hole sizing.
+
+## Cube key parameters (`cube.scad`)
+- `size_x`, `size_y`, `size_z`: Cube dimensions.
+- `center_cube`: Center the cube at the origin.
+- `edge_style`: `none`, `chamfer`, or `fillet`.
+- `edge_amount`: Chamfer size or fillet radius.
 
 ## How the bag is built
 - The body uses a rounded rectangular prism shell, hollowed with a thickness offset.
