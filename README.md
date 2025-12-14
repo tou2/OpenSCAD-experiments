@@ -24,10 +24,9 @@ This repository contains OpenSCAD experiments. Current generators:
 - `plate_width`, `plate_height`: Set explicit size; leave `0` for auto estimate.
 - `margin`, `corner_radius`: Plate padding and rounded corners.
 - `plate_thickness`, `text_depth`, `text_mode`: Base thickness, emboss/engrave depth, and mode.
+- `plate_shape`: Shape of the plate: `"rectangle"`, `"circle"`, `"ellipse"`, or `"rounded_rect"`.
 - `halign`, `valign`: Text alignment within the plate.
- - `language`, `script`, `direction`: International text shaping. For Arabic, use `language = "ar"`, `script = "arabic"`, `direction = "rtl"`, and pick a font that supports Arabic (e.g., `"Noto Naskh Arabic"`, `"Amiri"`, `"Scheherazade"`).
-
-Example (Arabic):
+- `language`, `script`, `direction`: International text shaping. For Arabic, use `language = "ar"`, `script = "arabic"`, `direction = "rtl"`, and pick a font that supports Arabic (e.g., `"Noto Naskh Arabic"`, `"Amiri"`, `"Scheherazade"`).Example (Arabic):
 
 ```
 message = "مرحبا";

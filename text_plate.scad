@@ -19,6 +19,9 @@ plate_thickness = 4;       // thickness of the base plate
 text_depth = 2;            // emboss/engrave depth
 text_mode = "emboss";     // "emboss" or "engrave"
 
+// Plate shape options
+plate_shape = "rectangle"; // "rectangle", "circle", "ellipse", "rounded_rect"
+
 halign = "center";        // text alignment: left|center|right
 valign = "center";        // text vertical alignment: top|center|baseline|bottom
 $fn = 64;
@@ -44,8 +47,27 @@ module rounded_rect_2d(w, h, r) {
     else offset(r=r) square([w - 2*r, h - 2*r], center=true);
 }
 
-module plate(w, h, t, r) {
-    linear_extrude(height=t) rounded_rect_2d(w, h, r);
+module circle_2d(w, h) {
+    // Use average of w and h for diameter
+    d = (w + h) / 2;
+    circle(d=d);
+}
+
+module ellipse_2d(w, h) {
+    scale([w/h, 1, 1]) circle(d=h);
+}
+
+module plate(w, h, t, r, shape="rectangle") {
+    linear_extrude(height=t) {
+        if (shape == "circle")
+            circle_2d(w, h);
+        else if (shape == "ellipse")
+            ellipse_2d(w, h);
+        else if (shape == "rounded_rect")
+            rounded_rect_2d(w, h, r);
+        else // rectangle
+            square([w, h], center=true);
+    }
 }
 
 module text3d(msg, size, depth, font, halign, valign, spacing=1.0, language="en", script="latin", direction="ltr") {
@@ -70,20 +92,20 @@ module text_plate() {
 
     if (text_mode == "emboss") {
         union() {
-            plate(w, h, plate_thickness, corner_radius);
+            plate(w, h, plate_thickness, corner_radius, plate_shape);
             // place text on the top surface
             translate([0, 0, plate_thickness])
                 text3d(message, size, text_depth, font, halign, valign, letter_spacing, language, script, direction);
         }
     } else if (text_mode == "engrave") {
         difference() {
-            plate(w, h, plate_thickness, corner_radius);
+            plate(w, h, plate_thickness, corner_radius, plate_shape);
             // subtract text into the top face
             translate([0, 0, plate_thickness - text_depth])
                 text3d(message, size, text_depth, font, halign, valign, letter_spacing, language, script, direction);
         }
     } else {
-        plate(w, h, plate_thickness, corner_radius);
+        plate(w, h, plate_thickness, corner_radius, plate_shape);
     }
 }
 
