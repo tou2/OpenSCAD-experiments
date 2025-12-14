@@ -12,11 +12,19 @@ This repository contains OpenSCAD experiments. Current generators:
  - `torus.scad` — torus via rotate_extrude with major/minor radii.
  - `pyramid.scad` — square-base pyramid with base size and height.
  - `prism.scad` — right triangular prism with base and height.
+ - `text_plate.scad` — make a rectangular plaque with embossed/engraved text.
 
 ## Quick start
 1. Open any `.scad` in OpenSCAD (e.g., `cube.scad`, `sphere.scad`, `cylinder.scad`, `cone.scad`, `torus.scad`, `pyramid.scad`, `prism.scad`).
 2. Tweak the variables in the **User parameters** section.
 3. Press F5 to preview, F6 to render.
+
+## Text Plate (`text_plate.scad`)
+- `message`, `font`, `size`: Text content, font, and size.
+- `plate_width`, `plate_height`: Set explicit size; leave `0` for auto estimate.
+- `margin`, `corner_radius`: Plate padding and rounded corners.
+- `plate_thickness`, `text_depth`, `text_mode`: Base thickness, emboss/engrave depth, and mode.
+- `halign`, `valign`: Text alignment within the plate.
 
 ## Bag key parameters (`bag.scad`)
 - `bag_width`, `bag_height`, `bag_depth`: Overall body dimensions.
