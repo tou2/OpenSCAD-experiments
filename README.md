@@ -4,9 +4,10 @@ This repository contains OpenSCAD experiments. Current generators:
 
 - `bag.scad` — soft-sided bag with tunable dimensions and pockets.
 - `cat.scad` — stylized parametric cat with adjustable body, head, tail, ears, and legs.
+- `shackle.scad` — D/bow shackle with adjustable bow thickness, gap, and pin.
 
 ## Quick start
-1. Open `bag.scad` or `cat.scad` in OpenSCAD.
+1. Open `bag.scad`, `cat.scad`, or `shackle.scad` in OpenSCAD.
 2. Tweak the variables in the **User parameters** section.
 3. Press F5 to preview, F6 to render.
 
@@ -23,6 +24,12 @@ This repository contains OpenSCAD experiments. Current generators:
 - `leg_radius`, `leg_height`, `leg_spread_*`, `leg_taper`: Leg size and stance width.
 - `tail_length`, `tail_radius`, `tail_lift`, `tail_curl`, `tail_side_offset`: Tail length, thickness, lift, curl, and side offset.
 - `nose_radius`, `eye_radius`: Small facial details.
+
+## Shackle key parameters (`shackle.scad`)
+- `bow_radius`: Tube thickness of the U-shaped body.
+- `throat_width`, `leg_height`: Gap between legs and height to pin centerline.
+- `pin_diameter`, `pin_clearance`: Pin size and fit allowance.
+- `pin_head_*`, `pin_nut_*`, `pin_eye_diameter`: Head, nut, and through-hole sizing.
 
 ## How the bag is built
 - The body uses a rounded rectangular prism shell, hollowed with a thickness offset.
